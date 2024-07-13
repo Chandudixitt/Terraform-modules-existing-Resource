@@ -1,4 +1,3 @@
-#
 resource "azurerm_linux_virtual_machine" "main" {
   name                  = var.vm_name
   location              = var.location

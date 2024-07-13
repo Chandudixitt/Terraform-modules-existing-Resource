@@ -1,4 +1,3 @@
-#
 resource "azurerm_network_interface" "main" {
   name                 = var.nic_name
   location             = var.location

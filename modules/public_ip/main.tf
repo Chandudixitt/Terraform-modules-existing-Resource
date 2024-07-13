@@ -1,4 +1,3 @@
-#
 resource "azurerm_public_ip" "main" {
   name                = var.public_ip_name
   location            = var.location
