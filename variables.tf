@@ -303,3 +303,9 @@ variable "nat_gateway" {
   type        = string
 }
 
+#variable "ssh_private_key" {
+#  description = "ssh private key of VMs"
+#  type        = string
+#}
+
+
