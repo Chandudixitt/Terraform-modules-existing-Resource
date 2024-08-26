@@ -84,6 +84,7 @@ module "vm" {
   assign_public_ip     = (index(keys(var.vm_details), each.key) == 1)
   availability_set_ids  = azurerm_availability_set.avset[*].id
   vm_to_avset_map      = var.vm_to_avset_map
+  #  ssh_private_key      = var.ssh_private_key
 
   tags                 = var.tags
 }
