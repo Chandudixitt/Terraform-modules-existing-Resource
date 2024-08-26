@@ -53,6 +53,15 @@ resource "azurerm_virtual_machine" "vm" {
   os_profile {
     computer_name  = var.vm_name
     admin_username = var.username
+    custom_data = base64encode(<<-EOF
+      package_update: true
+      packages:
+        ${var.vm_name == "PrimeSquare-IAC-App-1" || var.vm_name == "PrimeSquare-IAC-App-2" ? "- openjdk-17-jdk"  : ""}
+        ${var.vm_name == "PrimeSquare-IAC-Web-1" || var.vm_name == "PrimeSquare-IAC-Web-2" ? "- apache2" : ""}
+      runcmd:
+        ${var.vm_name == "PrimeSquare-IAC-Web-1" || var.vm_name == "PrimeSquare-IAC-Web-2" ? "systemctl start apache2" : ""}
+    EOF
+    )
   }
 
   os_profile_linux_config {
@@ -63,18 +72,7 @@ resource "azurerm_virtual_machine" "vm" {
       key_data = var.ssh_public_key
     }
   }
-  
-#  provisioner "file" {
-#    source      = "${path.module}/private_key.pem"
-#    destination = "/home/${var.username}/.ssh/id_rsa"
-#    connection {
-#      type        = "ssh"
-#      user        = var.username
-#      private_key = var.ssh_private_key
-#      host = contains(["PrimeSquare-IAC-Web-1", "PrimeSquare-IAC-Web-2"], var.vm_name) && length(azurerm_public_ip.pubip) > 0 ? azurerm_public_ip.pubip[count.index].ip_address : null
-#    }
-#  }
-
+ 
 #provisioner "remote-exec" {
 #    connection {
 #      type        = "ssh"
