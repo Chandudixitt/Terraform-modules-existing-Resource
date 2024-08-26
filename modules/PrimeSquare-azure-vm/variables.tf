@@ -123,3 +123,8 @@ variable "tags" {
 #  type        = list(string)
 #}
 
+#variable "ssh_private_key" {
+#  description = "ssh private key of VMs"
+#  type        = string
+#}
+
