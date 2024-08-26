@@ -75,6 +75,20 @@ resource "azurerm_virtual_machine" "vm" {
 #    }
 #  }
 
+#provisioner "remote-exec" {
+#    connection {
+#      type        = "ssh"
+#      user        = var.username
+#      private_key = file(var.ssh_private_key)  # Path to your private key
+#      host        = azurerm_network_interface.nic[count.index].private_ip_address
+#    }
+#
+#    inline = [
+#      "sudo chmod +x /home/ubuntu/Terraform-avset-code/avset-terra-code-old/script.sh",
+#      "sudo bash /home/ubuntu/Terraform-avset-code/avset-terra-code-old/script.sh"
+#    ]
+#  }
+
   tags = var.tags
 }
 
