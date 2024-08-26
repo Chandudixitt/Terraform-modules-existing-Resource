@@ -417,7 +417,7 @@ container_access_type  = "private"
 
 nat-gateway-pip = "Primesquare-IAC-nat-gateway-pip"
 nat_gateway = "Primesquare-IAC-nat-gateway"
-
+#ssh_private_key = "/home/ubuntu/Terraform-avset-code/avset-terra-code-old/private_key.pem"
 
 tags = {
   Environment = "Development"
