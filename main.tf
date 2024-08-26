@@ -80,7 +80,6 @@ module "vm" {
   subnet_ids           = [element(module.subnet.subnet_ids, var.vm_subnet_map[each.key])]
   nic_name             = var.nic_name
   ssh_public_key       = tls_private_key.sshkey.public_key_openssh
-#  ssh_private_key      = tls_private_key.sshkey.private_key_pem
   assign_public_ip     = (index(keys(var.vm_details), each.key) == 1)
   availability_set_ids  = azurerm_availability_set.avset[*].id
   vm_to_avset_map      = var.vm_to_avset_map
