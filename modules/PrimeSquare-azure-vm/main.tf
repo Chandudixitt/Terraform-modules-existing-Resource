@@ -54,14 +54,20 @@ resource "azurerm_virtual_machine" "vm" {
     computer_name  = var.vm_name
     admin_username = var.username
     custom_data = base64encode(<<-EOF
-      package_update: true
-      packages:
-        ${var.vm_name == "PrimeSquare-IAC-App-1" || var.vm_name == "PrimeSquare-IAC-App-2" ? "- openjdk-17-jdk"  : ""}
-        ${var.vm_name == "PrimeSquare-IAC-Web-1" || var.vm_name == "PrimeSquare-IAC-Web-2" ? "- apache2" : ""}
-      runcmd:
-        ${var.vm_name == "PrimeSquare-IAC-Web-1" || var.vm_name == "PrimeSquare-IAC-Web-2" ? "systemctl start apache2" : ""}
-    EOF
-    )
+    #cloud-config
+    package_update: true
+    packages:
+      ${var.vm_name == "PrimeSquare-IAC-Web-1" || var.vm_name == "PrimeSquare-IAC-Web-2" ? "- apache2" : ""}
+      ${var.vm_name == "PrimeSquare-IAC-App-1" || var.vm_name == "PrimeSquare-IAC-App-2" ? "- openjdk-17-jdk" : ""}
+      ${var.vm_name == "PrimeSquare-IAC-ZK-1" || var.vm_name == "PrimeSquare-IAC-ZK-2" ? "- openjdk-17-jdk" : ""}
+      ${var.vm_name == "PrimeSquare-IAC-Kafka-1" || var.vm_name == "PrimeSquare-IAC-Kafka-1" ? "- openjdk-17-jdk" : ""}
+    runcmd:
+      ${var.vm_name == "PrimeSquare-IAC-Web-1" || var.vm_name == "PrimeSquare-IAC-Web-2" ? "systemctl start apache2" : ""}
+      ${var.vm_name == "PrimeSquare-IAC-App-1" || var.vm_name == "PrimeSquare-IAC-App-2" ? "java -version" : ""}
+      ${var.vm_name == "PrimeSquare-IAC-ZK-1" || var.vm_name == "PrimeSquare-IAC-ZK-2" ? "java -version" : ""}
+      ${var.vm_name == "PrimeSquare-IAC-Kafka-1" || var.vm_name == "PrimeSquare-IAC-Kafka-2" ? "java -version" : ""}
+  EOF
+   )
   }
 
   os_profile_linux_config {
