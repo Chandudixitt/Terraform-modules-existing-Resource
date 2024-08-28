@@ -195,41 +195,8 @@ nsg_details = [
         access            = "Allow"
         protocol          = "Tcp"
         source_port_range = "*"
-        destination_port_range = "22"
-        source_address_prefix = "*"
-        destination_address_prefix = "*"
-      },
-      {
-        name                    = "Alloweb1ip"
-        priority                = 200
-        direction               = "Inbound"
-        access                  = "Allow"
-        protocol                = "Tcp"
-        source_port_range       = "3804"
-        destination_port_range  = "3804"
-        source_address_prefix   = "4.213.165.126/32"
-        destination_address_prefix = "*"
-      },
-      {
-        name                    = "Alloweb2ip"
-        priority                = 201
-        direction               = "Inbound"
-        access                  = "Allow"
-        protocol                = "Tcp"
-        source_port_range       = "3804"
-        destination_port_range  = "3804"
-        source_address_prefix   = "4.213.164.96/32"
-        destination_address_prefix = "*"
-      },
-      {
-        name                    = "Alloweblbip"
-        priority                = 202
-        direction               = "Inbound"
-        access                  = "Allow"
-        protocol                = "Tcp"
-        source_port_range       = "3804"
-        destination_port_range  = "3804"
-        source_address_prefix   = "4.213.166.205/32"
+        destination_port_ranges = ["22", "80"]
+        source_address_prefixes = ["74.225.210.222/32", "74.225.210.200/32"]
         destination_address_prefix = "*"
       }
     ]
@@ -245,7 +212,7 @@ nsg_details = [
         source_address_prefix = "*"
         destination_address_prefix = "*"
       }
-    ]	
+    ]
   },
   {
     name          = "PrimeSquare-MSG-NSG"
@@ -256,31 +223,9 @@ nsg_details = [
         direction         = "Inbound"
         access            = "Allow"
         protocol          = "Tcp"
-        source_port_range = "3306"
-        destination_port_range = "3306"
-        source_address_prefix = "10.2.0.68/32"
-        destination_address_prefix = "*"
-      },
-      {
-        name                    = "Allowapp2ip"
-        priority                = 201
-        direction               = "Inbound"
-        access                  = "Allow"
-        protocol                = "Tcp"
-        source_port_range       = "3306"
-        destination_port_range  = "3306"
-        source_address_prefix   = "10.2.0.72/32"
-        destination_address_prefix = "*"
-      },
-      {
-        name                    = "Allowapplbip"
-        priority                = 202
-        direction               = "Inbound"
-        access                  = "Allow"
-        protocol                = "Tcp"
-        source_port_range       = "3306"
-        destination_port_range  = "3306"
-        source_address_prefix   = "4.213.225.29/32"
+        source_port_range = "*"
+        destination_port_ranges = ["22", "8080"]
+        source_address_prefixes = ["74.225.210.222/32", "74.225.210.200/32"]
         destination_address_prefix = "*"
       }
     ]
@@ -308,19 +253,8 @@ nsg_details = [
         access            = "Allow"
         protocol          = "Tcp"
         source_port_range = "*"
-        destination_port_range = "22"
-        source_address_prefix = "*"
-        destination_address_prefix = "*"
-      },
-      {
-        name                    = "Allowhttps"
-        priority                = 200
-        direction               = "Inbound"
-        access                  = "Allow"
-        protocol                = "Tcp"
-        source_port_range       = "443"
-        destination_port_range  = "443"
-        source_address_prefix   = "*"
+        destination_port_ranges = ["22", "80"]
+        source_address_prefixes = ["23.87.28.44/32", "23.87.28.55/32"]
         destination_address_prefix = "*"
       }
     ]
@@ -348,19 +282,8 @@ nsg_details = [
         access            = "Allow"
         protocol          = "Tcp"
         source_port_range = "*"
-        destination_port_range = "80"
-        source_address_prefix = "*"
-        destination_address_prefix = "*"
-      },
-      {
-        name                    = "AllowSsh"
-        priority                = 200
-        direction               = "Inbound"
-        access                  = "Allow"
-        protocol                = "Tcp"
-        source_port_range       = "*"
-        destination_port_range  = "22"
-        source_address_prefix   = "*"
+        destination_port_ranges = ["80", "22"]
+        source_address_prefixes = ["192.168.0.9/32", "192.168.0.22/32"]
         destination_address_prefix = "*"
       }
     ]
@@ -379,9 +302,6 @@ nsg_details = [
     ]
   }
 ]
-
-
-
 
 public_lb_name = "PrimeSquare-IAC-public-web-lb"
 health_probe_name        = "PrimeSquare-IAC-public-lb-health-probe"
